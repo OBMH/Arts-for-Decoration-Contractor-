@@ -96,7 +96,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                     src={currentCover}
                     alt={`${service.title} - فنون للديكور والمقاولات`}
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"
+                    loading="eager"
+                    decoding="async"
+                    className="w-full h-full object-cover transition-transform duration-150 group-hover:scale-103"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/85 via-transparent to-[#111111]/25" />
 

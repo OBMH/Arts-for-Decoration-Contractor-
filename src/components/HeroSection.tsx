@@ -38,14 +38,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
       aria-label="الواجهة الرئيسية - فنون للديكور والمقاولات"
       className="relative min-h-[86vh] flex items-center bg-[#111111] overflow-hidden"
     >
-      {/* Background Real Project Image */}
+      {/* Background Real Project Image (Pre-mounted for instant 0ms switching) */}
       <div className="absolute inset-0 z-0">
-        <img
-          src={currentScene.image}
-          alt={currentScene.caption}
-          referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-center transition-opacity duration-500"
-        />
+        {HERO_SCENES.map((scene, idx) => (
+          <img
+            key={scene.id}
+            src={scene.image}
+            alt={scene.caption}
+            referrerPolicy="no-referrer"
+            loading="eager"
+            decoding="sync"
+            fetchPriority={idx === 0 ? 'high' : 'auto'}
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-150 ${
+              idx === activeSceneIndex ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            }`}
+          />
+        ))}
         {/* Measured Dark Scrim Overlay for High Contrast Readability */}
         <div className="absolute inset-0 bg-gradient-to-l from-[#111111]/92 via-[#111111]/78 to-[#111111]/55" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-[#111111]/40" />
@@ -83,7 +91,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
               <button
                 type="button"
                 onClick={() => onNavigate('portfolio', 'portfolio')}
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-lg bg-[#F5A000] text-[#111111] font-display font-bold text-base hover:bg-[#F5A000]/90 transition-all duration-150 shadow-lg cursor-pointer whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-lg bg-[#F5A000] text-[#111111] font-display font-bold text-base hover:bg-[#F5A000]/90 transition-all duration-100 shadow-lg cursor-pointer whitespace-nowrap"
               >
                 <span>استكشف أعمالنا</span>
                 <ArrowLeft className="w-5 h-5" />
@@ -92,7 +100,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
               <button
                 type="button"
                 onClick={() => onNavigate('contact', 'contact')}
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-lg bg-white/10 hover:bg-white/15 text-white border border-white/25 font-display font-medium text-base backdrop-blur-sm transition-all duration-150 cursor-pointer whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-lg bg-white/10 hover:bg-white/15 text-white border border-white/25 font-display font-medium text-base backdrop-blur-sm transition-all duration-100 cursor-pointer whitespace-nowrap"
               >
                 <PhoneCall className="w-5 h-5 text-[#F5A000]" />
                 <span>تواصل معنا</span>
@@ -137,12 +145,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           <div className="lg:col-span-5">
             <div className="bg-[#111111]/80 backdrop-blur-md border border-[#795B43]/40 rounded-2xl p-4 sm:p-5 shadow-2xl">
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-[#111111]">
-                <img
-                  src={currentScene.image}
-                  alt={currentScene.label}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
-                />
+                {HERO_SCENES.map((scene, idx) => (
+                  <img
+                    key={scene.id}
+                    src={scene.image}
+                    alt={scene.label}
+                    referrerPolicy="no-referrer"
+                    loading="eager"
+                    decoding="sync"
+                    fetchPriority={idx === 0 ? 'high' : 'auto'}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-150 ${
+                      idx === activeSceneIndex ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                    }`}
+                  />
+                ))}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/90 via-transparent to-transparent" />
                 <div className="absolute bottom-3 right-3 left-3 flex items-end justify-between gap-2">
                   <div>
@@ -157,6 +173,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
                     src={COMPANY_INFO.logo}
                     alt="شعار فنون للديكور"
                     referrerPolicy="no-referrer"
+                    loading="eager"
+                    decoding="sync"
+                    fetchPriority="high"
                     className="w-10 h-10 object-contain shrink-0"
                   />
                 </div>

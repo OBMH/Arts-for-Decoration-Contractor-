@@ -158,8 +158,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
                   src={item.image}
                   alt={item.title}
                   referrerPolicy="no-referrer"
-                  loading="lazy"
-                  className={`w-full h-full object-cover transition-transform duration-300 ${
+                  loading="eager"
+                  decoding="async"
+                  className={`w-full h-full object-cover transition-transform duration-150 ${
                     item.id === 'work-09'
                       ? 'object-top scale-108 group-hover:scale-112'
                       : 'group-hover:scale-105'

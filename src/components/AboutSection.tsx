@@ -88,6 +88,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
                 src={COMPANY_INFO.aboutImage}
                 alt="أعمال التصميم الداخلي وتنفيذ الديكور من شركة فنون للديكور والمقاولات"
                 referrerPolicy="no-referrer"
+                loading="eager"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent" />
@@ -105,6 +107,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
                   src={COMPANY_INFO.aboutSecondaryImage}
                   alt="تفاصيل الجداريات والتكسيات الداخلية"
                   referrerPolicy="no-referrer"
+                  loading="eager"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -115,6 +119,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
                     src={COMPANY_INFO.logo}
                     alt="شعار فنون"
                     referrerPolicy="no-referrer"
+                    loading="eager"
+                    decoding="async"
                     className="w-8 h-8 object-contain"
                   />
                 </div>

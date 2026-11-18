@@ -13,7 +13,11 @@ import { WhyChooseAndSteps } from './components/WhyChooseAndSteps';
 import { WorkingHoursAndContact } from './components/WorkingHoursAndContact';
 import { Footer } from './components/Footer';
 import { FloatingWidgets } from './components/FloatingWidgets';
-import { PortfolioCategoryId } from './data/companyData';
+import {
+  PortfolioCategoryId,
+  COMPANY_INFO,
+  PORTFOLIO_ITEMS,
+} from './data/companyData';
 
 const SECTION_TO_PAGE: Record<string, ActivePage> = {
   hero: 'home',
@@ -35,9 +39,9 @@ export default function App() {
     const targetId = sectionId || (page === 'home' ? 'hero' : page);
     const el = document.getElementById(targetId);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      el.scrollIntoView({ behavior: 'auto', block: 'start' });
     } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'auto' });
     }
   }, []);
 
@@ -47,11 +51,37 @@ export default function App() {
       setActivePage('portfolio');
       const el = document.getElementById('portfolio');
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.scrollIntoView({ behavior: 'auto', block: 'start' });
       }
     },
     []
   );
+
+  // Pre-warm and decode all images into browser memory & register cache-first Service Worker
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+
+    const allUrls = Array.from(
+      new Set([
+        COMPANY_INFO.logo,
+        COMPANY_INFO.heroImage,
+        COMPANY_INFO.aboutImage,
+        COMPANY_INFO.aboutSecondaryImage,
+        ...PORTFOLIO_ITEMS.map((item) => item.image),
+      ])
+    );
+
+    allUrls.forEach((url) => {
+      const img = new Image();
+      img.decoding = 'async';
+      img.src = url;
+      if (typeof img.decode === 'function') {
+        img.decode().catch(() => {});
+      }
+    });
+  }, []);
 
   // Observe visible sections to keep the navigation highlight in sync on scroll
   useEffect(() => {

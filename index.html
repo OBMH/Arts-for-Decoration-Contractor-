@@ -37,13 +37,40 @@
 
     <link rel="icon" type="image/png" href="/assets/aistudio/logo_c3257717.png" />
 
-    <!-- Google Fonts: Readex Pro (Display) & Tajawal (Body) -->
+    <!-- High-Priority Preload for Logo & Hero Images (Instant First Paint) -->
+    <link rel="preload" as="image" href="/assets/aistudio/logo_c3257717.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/aistudio/IMG-20261118-WA0030_d75ac8cd.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/aistudio/IMG-20261118-WA0032_f1d6d46a.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/aistudio/IMG-20261118-WA0019_773b7855.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/aistudio/IMG-20261118-WA0014_7af506b0.jpg" />
+
+    <!-- DNS Prefetch & Preconnect for External Links (WhatsApp, Maps, Instagram, Snapchat) -->
+    <link rel="dns-prefetch" href="https://wa.me" />
+    <link rel="preconnect" href="https://wa.me" crossorigin />
+    <link rel="dns-prefetch" href="https://maps.app.goo.gl" />
+    <link rel="dns-prefetch" href="https://www.instagram.com" />
+    <link rel="dns-prefetch" href="https://www.snapchat.com" />
+
+    <!-- Google Fonts: Non-blocking load for weak internet resilience -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <!-- Schema.org JSON-LD Structured Data -->
     <script type="application/ld+json">
