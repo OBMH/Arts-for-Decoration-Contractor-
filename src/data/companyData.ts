@@ -54,8 +54,8 @@ export const COMPANY_INFO = {
   locationText: 'السعودية، جيزان، مدينة البناء.',
   locationShort: 'جيزان – مدينة البناء',
   googleMapsUrl: 'https://maps.app.goo.gl/bvDxyqAx4v4JxVzu6?g_st=awb',
-  instagramUrl: 'https://www.instagram.com/homedecor_jazan?vrfl=MXg3NG9pYnVjbTI5aA==',
-  instagramHandle: '@homedecor_jazan',
+  instagramUrl: 'https://www.instagram.com/fnwn055?gwpx=MXZ4b3JhYmloNTlhMg==',
+  instagramHandle: '@fnwn055',
   snapchatUrl: 'https://www.snapchat.com/add/bdlrb.22?share_id=aIHD9iGy-p0&locale=ar-YE',
   snapchatHandle: 'bdlrb.22',
   phones: [
